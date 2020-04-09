@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Orders List</h1>
+    <form [formGroup]="form" (ngSubmit)="submitForm()" novalidate>
+        <div *ngFor="let c of customers;let i=index">
+            <h4>{{c.ShopName}}</h4>
+            <div class="card-deck">
+                <div class="card m-5" style="width:30%;min-height:50px;border:1px solid black;margin:5px;padding:5px;" *ngFor="let it of c.Items;let j=index">
+                        <label>
+                            <input type="checkbox" value="{{c._id}}+{{it._id}}+{{it.Price}}+{{it.Quantity}}" (change)="onCheckboxChange($event)">
+                            {{it.Name}}
+                            <span style="float:right">
+                                {{it.Time}}
+                            </span><br>
+                            {{it.Price}} per a Quantity
+                            <br>
+                            Quantity:{{it.Quantity}}
+                        </label>
+                </div>
+                {{c.Amount}}
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+</div>

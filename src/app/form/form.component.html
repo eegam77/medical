@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>New Order</h1>
+    <form>
+      <div class="form-group">
+        <label for="shop">Name</label>
+        <select [(ngModel)]="selected" class="custom-select" (blur)="setName()" name="user">
+            <option value="" disabled></option>
+            <option *ngFor="let c of customers;let i=index" value="{{i}}">{{c.ShopName}}</option>
+         </select>
+      </div>
+      <a routerLink="NewOne">New</a><br>
+      <div class="card-deck">
+        <div class="card m-5" style="width:30%;min-height:50px;border:1px solid black;margin:5px;padding:5px;" *ngFor="let p of products;let i=index">
+            {{p.Name}}
+            <span style="float:right">
+              <button style="display:none;" [id]="'m'+i"(click)="check(i);remove(i)">-</button>
+              <span [id]="'count'+i">0</span>
+              <button (click)="add(i)">+</button>
+            </span><br>
+            {{p.Price}}
+        </div>
+    </div>
+      <a routerLink="NewProduct">New</a><br>
+      <button type="submit" class="btn btn-success" (click)="OnSubmit()">Submit</button>
+    </form>
+    <a routerLink="orders">Order list</a>
+</div>
+
